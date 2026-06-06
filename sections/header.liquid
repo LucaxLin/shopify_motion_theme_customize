@@ -70,7 +70,7 @@
               {% if section.settings.main_menu_alignment == 'center' or section.settings.main_menu_alignment == 'center-split' %}
                 {% if section.settings.header_search_enable %}
                   <div class="site-nav medium-down--hide">
-                    <a href="{{ routes.search_url }}" class="site-nav__link site-nav__link--icon js-search-header js-no-transition">
+                    <a href="{{ routes.search_url }}" class="site-nav__link site-nav__link--icon js-no-transition">
                       {% include 'icon-search' %}
                       <span class="icon__fallback-text">{{ 'general.search.title' | t }}</span>
                     </a>
@@ -103,7 +103,15 @@
             {% endif %}
           {% endif %}
 
-          <div class="header-item header-item--icons">          
+          <div class="header-item header-item--icons">    
+            <form action="/search" method="get" class="site-header__search-form" role="search">
+              <input type="hidden" name="type" value="{{ settings.search_type }}">
+              <button type="submit" class="text-link site-header__search-btn">
+                {% include 'icon-search' %}
+                <span class="icon__fallback-text">{{ 'general.search.submit' | t }}</span>
+              </button>
+              <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}" class="site-header__search-input" aria-label="{{ 'general.search.placeholder' | t }}">
+            </form>
             {% include 'header-logo-social', block: block, first_instance: true %}
             {% include 'header-icons' %}
           </div>
@@ -125,7 +133,7 @@
               </button>
               <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}" class="site-header__search-input" aria-label="{{ 'general.search.placeholder' | t }}">
             </form>
-            <button type="button" class="js-search-header-close text-link site-header__search-btn">
+            <button type="button" class="text-link site-header__search-btn">
               {% include 'icon-close' %}
               <span class="icon__fallback-text">{{ 'general.accessibility.close_modal' | t | json }}</span>
             </button>
