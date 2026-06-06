@@ -74,6 +74,7 @@
    {% include 'disable-right-click' %}
 {% include 'weglot_hreftags' %}
 {% include 'weglot_switcher' %}
+  {% render 'rapid-search-settings' %}
 </head>
 
 <body class="template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}{% if settings.enable_currencies %} currencies-enabled{% endif %}" data-transitions="{{ settings.animate_page_transitions }}">
